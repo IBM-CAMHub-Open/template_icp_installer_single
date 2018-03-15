@@ -33,6 +33,7 @@
   "template_input_params": [
     {
       "name": "download_user",
+      "description": "Username to access a secure repository location",
       "type": "string",
       "required": false,
       "secured": false,
@@ -43,6 +44,7 @@
     },
     {
       "name": "download_user_password",
+      "description": "Password for the Username to access a secure repository location",
       "type": "string",
       "required": false,
       "secured": true,
@@ -53,6 +55,7 @@
     },
     {
       "name": "docker_binary_url",
+      "description": "Location of the Docker Binaries used by IBM Cloud Private",
       "type": "string",
       "required": true,
       "secured": false,
@@ -65,6 +68,7 @@
     },
     {
       "name": "enable_kibana",
+      "description": "Enable / Disable the installation of Kibana Service in IBM Cloud Private Installation",
       "default": "false",
       "type": "string",
       "required": true,
@@ -87,6 +91,7 @@
     },
     {
       "name": "enable_metering",
+      "description": "Enable / Disable the installation of Metering Service in IBM Cloud Private Installation",
       "default": "true",
       "type": "string",
       "required": true,
@@ -109,6 +114,7 @@
     },
     {
       "name": "icp_binary_url",
+      "description": "Location of the IBM Cloud Private Binaries used by IBM Cloud Private",
       "type": "string",
       "required": true,
       "secured": false,
@@ -121,6 +127,7 @@
     },
     {
       "name": "icp_cluster_name",
+      "description": "IBM Cloud Private Cluster Name",
       "type": "string",
       "required": true,
       "secured": false,
@@ -132,6 +139,7 @@
     },
     {
       "name": "icp_admin_user",
+      "description": "IBM Cloud Private Admin User Name",
       "default": "admin",
       "type": "string",
       "required": true,
@@ -143,6 +151,7 @@
     },
     {
       "name": "icp_admin_password",
+      "description": "IBM Cloud Private Admin User Password",
       "default": "admin",
       "type": "string",
       "required": true,
@@ -154,6 +163,7 @@
     },
     {
       "name": "icp_private_ssh_key",
+      "description": "IBM Cloud Private - Private SSH key for access between boxes (base64 encoded)",
       "default": "",
       "type": "string",
       "required": false,
@@ -165,6 +175,7 @@
     },
     {
       "name": "icp_public_ssh_key",
+      "description": "IBM Cloud Private - Public SSH key for access between boxes",
       "default": "",
       "type": "string",
       "required": false,
@@ -176,6 +187,7 @@
     },
     {
       "name": "icp_version",
+      "description": "IBM Cloud Private Version Number",
       "default": "2.1.0.2",
       "type": "string",
       "required": true,
@@ -187,6 +199,7 @@
     },
     {
       "name": "kub_version",
+      "description": "IBM Cloud Private Kubernetes Version Number",
       "default": "1.9.1",
       "type": "string",
       "required": true,
@@ -198,6 +211,7 @@
     },
     {
       "name": "singlenode_prefix_name",
+      "description": "Single Node Hostname Prefix eg icpnode",
       "default": "ICPSingle",
       "type": "string",
       "required": true,
@@ -209,6 +223,7 @@
     },
     {
       "name": "singlenode_memory",
+      "description": "Single Node Node Memory Allocation (mb)",
       "default": "16384",
       "type": "string",
       "required": true,
@@ -220,6 +235,7 @@
     },
     {
       "name": "singlenode_vcpu",
+      "description": "Single Node vCPU Allocation",
       "default": "8",
       "type": "string",
       "required": true,
@@ -231,6 +247,7 @@
     },
     {
       "name": "singlenode_vm_ipv4_address",
+      "description": "Single Node IP Address (list)",
       "type": "list",
       "required": true,
       "secured": false,
@@ -243,6 +260,7 @@
     },
     {
       "name": "singlenode_vm_ipv4_gateway",
+      "description": "Single Node IP Gateway Address",
       "type": "string",
       "required": true,
       "secured": false,
@@ -267,6 +285,7 @@
     },
     {
       "name": "singlenode_vm_disk1_datastore",
+      "description": "Virtual Machine Datastore Name - Disk 1",
       "type": "string",
       "required": true,
       "secured": false,
@@ -277,6 +296,7 @@
     },    
     {
       "name": "singlenode_vm_template",
+      "description": "Virtual Machine Template Name",
       "type": "string",
       "required": true,
       "secured": false,
@@ -299,6 +319,7 @@
     },
     {
       "name": "singlenode_vm_os_password",
+      "description": "The user password to use while configuring the IBM Cloud Private Single Node.",
       "type": "string",
       "required": true,
       "secured": true,
@@ -320,6 +341,7 @@
     },
     {
       "name": "singlenode_vm_disk1_size",
+      "description": "Single Node Disk Size (GB)",
       "default": "400",
       "type": "string",
       "required": true,
@@ -431,8 +453,9 @@
     },
     {
       "name": "vm_folder",
+      "description": "vSphere Folder name",
       "type": "string",
-      "required": true,
+      "required": false,
       "secured": false,
 			"label": "vSphere Folder Name",
       "hidden": false,
@@ -456,6 +479,7 @@
     },
     {
       "name": "ibm_cloud_private_admin_user",
+      "description": "IBM Cloud Private Admin Username",
       "type": "string",
       "required": true,
       "secured": false,
@@ -466,6 +490,7 @@
     },
     {
       "name": "ibm_cloud_private_admin_password",
+      "description": "IBM Cloud Private Admin Username Password",
       "type": "string",
       "required": true,
       "secured": true,

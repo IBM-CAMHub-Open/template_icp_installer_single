@@ -11,7 +11,7 @@ This template will install and configure the IBM Cloud Private in an HA topology
 The components of a IBM Cloud Private deployment include:
 
 - NFS Server (All in 1 Node)
-- Management Node (All in 1 Node)
+- Single  Node (All in 1 Node)
 - Master Nodes (All in 1 Node)
 - Proxy Nodes (All in 1 Node)
 - Worker Nodes (All in 1 Node)
@@ -113,13 +113,13 @@ The following tables list the template variables.
 
 | Name | Description | Type | Default |
 |------|-------------|:----:|:-----:|
-| boot_prefix_name | Management Node Hostname Prefix | string | `ICPSingle` |
-| boot_memory |  Management Node Memory Allocation (mb) | string | `16382` |
-| boot_vcpu | Management Node vCPU Allocation | string | `4` |
-| boot_vm_disk1_size | Management Node Disk Size (GB) | string | `400` |
-| boot_vm_ipv4_address | Management Nodes IP Address | list | `<list>` |
-| boot_vm_ipv4_gateway | Management Node IP Gateway | string |  |
-| boot_vm_ipv4_prefix_length | Management Node IP Netmask (CIDR) | string | `24` |
+| boot_prefix_name | Single  Node Hostname Prefix | string | `ICPSingle` |
+| boot_memory |  Single  Node Memory Allocation (mb) | string | `16382` |
+| boot_vcpu | Single  Node vCPU Allocation | string | `4` |
+| boot_vm_disk1_size | Single  Node Disk Size (GB) | string | `400` |
+| boot_vm_ipv4_address | Single  Nodes IP Address | list | `<list>` |
+| boot_vm_ipv4_gateway | Single  Node IP Gateway | string |  |
+| boot_vm_ipv4_prefix_length | Single  Node IP Netmask (CIDR) | string | `24` |
 
 ## Template Output Variables
 
