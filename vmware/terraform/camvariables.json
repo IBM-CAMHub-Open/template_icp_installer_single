@@ -212,7 +212,6 @@
     {
       "name": "singlenode_prefix_name",
       "description": "Single Node Hostname Prefix eg icpnode",
-      "default": "ICPSingle",
       "type": "string",
       "required": true,
       "secured": false,
