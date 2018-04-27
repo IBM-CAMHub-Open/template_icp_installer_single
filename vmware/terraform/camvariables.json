@@ -45,7 +45,7 @@
     {
       "name": "download_user_password",
       "description": "Password for the Username to access a secure repository location",
-      "type": "string",
+      "type": "password",
       "required": false,
       "secured": true,
       "label": "Repository User Password (Optional)",
@@ -153,7 +153,7 @@
       "name": "icp_admin_password",
       "description": "IBM Cloud Private Admin User Password",
       "default": "admin",
-      "type": "string",
+      "type": "password",
       "required": true,
       "secured": true,
       "label": "IBM Cloud Private Admin Password",
@@ -292,7 +292,7 @@
       "hidden": false,
       "immutable": false,
       "group_name": "generalvmtemplate"
-    },    
+    },
     {
       "name": "singlenode_vm_template",
       "description": "Virtual Machine Template Name",
@@ -319,7 +319,7 @@
     {
       "name": "singlenode_vm_os_password",
       "description": "The user password to use while configuring the IBM Cloud Private Single Node.",
-      "type": "string",
+      "type": "password",
       "required": true,
       "secured": true,
       "label": "Single Node Template User Password",
@@ -393,7 +393,7 @@
       "hidden": false,
       "immutable": false,
       "group_name": "generalvmtemplate"
-    },    
+    },
     {
       "name": "vm_dns_servers",
 			"description": "List of DNS servers for the virtual network adapter. For more than one DNS, the values can be entered by adding more fields.",
@@ -501,4 +501,3 @@
 
   ]
 }
-
