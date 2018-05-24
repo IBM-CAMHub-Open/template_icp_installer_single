@@ -1,7 +1,7 @@
 # Single Node
 variable "singlenode_prefix_name" {
   type    = "string"
-  default = "ICPSingle"
+  default = "icpsingle"
 }
 
 variable "singlenode_vcpu" {
@@ -49,7 +49,7 @@ variable "singlenode_vm_disk1_datastore" {
 
 variable "singlenode_vm_disk1_keep_on_remove" {
   type    = "string"
-  default = "true"
+  default = "false"
 }
 
 variable "singlenode_vm_disk2_enable" {
@@ -69,7 +69,7 @@ variable "singlenode_vm_disk2_datastore" {
 
 variable "singlenode_vm_disk2_keep_on_remove" {
   type    = "string"
-  default = ""
+  default = "false"
 }
 
 variable "vm_domain" {
@@ -127,7 +127,7 @@ variable "icp_binary_url" {
 
 variable "icp_version" {
   type    = "string"
-  default = "2.1.0.2"
+  default = "2.1.0.3"
 }
 
 variable "kub_version" {
@@ -154,26 +154,6 @@ variable "enable_metering" {
   default = "true"
 }
 
-variable "cluster_vip" {
-  type    = "string"
-  default = ""
-}
-
-variable "cluster_vip_iface" {
-  type    = "string"
-  default = ""
-}
-
-variable "proxy_vip" {
-  type    = "string"
-  default = ""
-}
-
-variable "proxy_vip_iface" {
-  type    = "string"
-  default = ""
-}
-
 variable "icp_cluster_name" {
   type = "string"
 }
@@ -186,4 +166,29 @@ variable "icp_admin_user" {
 variable "icp_admin_password" {
   type    = "string"
   default = "admin"
+}
+
+variable "enable_bluemix_install" {
+  type    = "string"
+  default = "false"
+}
+
+variable "bluemix_token" {
+  type    = "string"
+  default = ""
+}
+
+variable "enable_single_node" {
+  type    = "string"
+  default = "true"
+}
+
+variable "enable_vm_va" {
+  type    = "string"
+  default = "true"
+}
+
+variable "enable_vm_management" {
+  type    = "string"
+  default = "true"
 }

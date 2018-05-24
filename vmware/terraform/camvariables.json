@@ -329,7 +329,7 @@
     },
     {
       "name": "singlenode_vm_disk1_keep_on_remove",
-      "default": "true",
+      "default": "false",
       "type": "string",
       "required": true,
       "secured": false,
