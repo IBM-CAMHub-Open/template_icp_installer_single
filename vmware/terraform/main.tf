@@ -36,7 +36,7 @@ resource "null_resource" "create-temp-random-dir" {
 }
 
 module "deployVM_singlenode" {
-  source = "github.com/IBM-CAMHub-Open/template_icp_modules//vmware_provision"
+  source = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//vmware_provision"
 
   #######
   vsphere_datacenter    = "${var.vsphere_datacenter}"
@@ -78,7 +78,7 @@ module "deployVM_singlenode" {
 
 module "push_hostfile" {
   # source               = "${var.github_location}/modules/config_hostfile"
-  source               = "github.com/IBM-CAMHub-Open/template_icp_modules//config_hostfile"
+  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_hostfile"
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
   vm_os_user           = "${var.singlenode_vm_os_user}"
@@ -89,7 +89,7 @@ module "push_hostfile" {
 
 module "icphosts" {
   # source            = "${var.github_location}/modules/config_icphosts"
-  source                = "github.com/IBM-CAMHub-Open/template_icp_modules//config_icphosts"
+  source                = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icphosts"
   master_public_ips     = "${join(",", var.singlenode_vm_ipv4_address)}"
   proxy_public_ips      = "${join(",", var.singlenode_vm_ipv4_address)}"
   management_public_ips = "${join(",", var.singlenode_vm_ipv4_address)}"
@@ -102,7 +102,7 @@ module "icphosts" {
 
 module "icp_prereqs" {
   # source               = "${var.github_location}/modules/config_icp_prereqs"
-  source               = "github.com/IBM-CAMHub-Open/template_icp_modules//config_icp_prereqs"
+  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icp_prereqs"
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
   vm_os_user           = "${var.singlenode_vm_os_user}"
@@ -113,7 +113,7 @@ module "icp_prereqs" {
 
 module "icp_download_load" {
   # source               = "${var.github_location}/modules/config_icp_download"
-  source                 = "github.com/IBM-CAMHub-Open/template_icp_modules//config_icp_download"
+  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icp_download"
   private_key            = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password         = "${var.singlenode_vm_os_password}"
   vm_os_user             = "${var.singlenode_vm_os_user}"
@@ -130,7 +130,7 @@ module "icp_download_load" {
 
 module "icp_config_yaml" {
   # source               = "${var.github_location}/modules/config_icp_boot_standalone"
-  source                 = "github.com/IBM-CAMHub-Open/template_icp_modules//config_icp_boot_standalone"
+  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icp_boot_standalone"
   private_key            = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password         = "${var.singlenode_vm_os_password}"
   vm_os_user             = "${var.singlenode_vm_os_user}"
