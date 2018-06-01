@@ -210,12 +210,15 @@
       "group_name": "icpdownload"
     },
     {
-      "name": "singlenode_prefix_name",
-      "description": "Single Node Hostname Prefix eg icpnode",
-      "type": "string",
+      "name": "singlenode_hostname_ip",
+      "default": {
+        "Enter Hostname": "0.0.0.0"
+      },
+      "description": "Single Node Hostname Prefix and IP Address",
+      "type": "map",
       "required": true,
       "secured": false,
-			"label": "Single Node Hostname Prefix",
+      "label": "Single Node Hostname - IP",
       "hidden": false,
       "immutable": false,
       "group_name": "virtualmachine"
@@ -243,19 +246,6 @@
       "hidden": false,
       "immutable": false,
       "group_name": "virtualmachine"
-    },
-    {
-      "name": "singlenode_vm_ipv4_address",
-      "description": "Single Node IP Address (list)",
-      "type": "list",
-      "required": true,
-      "secured": false,
-			"label": "Single Node IP Address",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine",
-			"regex": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]).){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-			"regexdesc": "Provide a Valid IP address for the Virtual Machine"
     },
     {
       "name": "singlenode_vm_ipv4_gateway",

@@ -1,7 +1,6 @@
 # Single Node
-variable "singlenode_prefix_name" {
-  type    = "string"
-  default = "icpsingle"
+variable "singlenode_hostname_ip" {
+  type    = "map"
 }
 
 variable "singlenode_vcpu" {
@@ -24,10 +23,6 @@ variable "singlenode_vm_os_user" {
 
 variable "singlenode_vm_os_password" {
   type = "string"
-}
-
-variable "singlenode_vm_ipv4_address" {
-  type = "list"
 }
 
 variable "singlenode_vm_ipv4_gateway" {
