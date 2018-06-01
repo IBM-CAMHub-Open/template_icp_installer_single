@@ -49,7 +49,7 @@ module "deployVM_singlenode" {
   // vm_folder = "${module.createFolder.folderPath}"
 
   vm_vcpu                    = "${var.singlenode_vcpu}"
-  vm_name                    = "${element(keys(var.singlenode_hostname_ip),0)}"
+  vm_name                    = "${keys(var.singlenode_hostname_ip)}"
   vm_memory                  = "${var.singlenode_memory}"
   vm_template                = "${var.singlenode_vm_template}"
   vm_os_password             = "${var.singlenode_vm_os_password}"
@@ -77,7 +77,7 @@ module "deployVM_singlenode" {
 }
 
 module "push_hostfile" {
-  source = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_hostfile"
+  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_hostfile"
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
   vm_os_user           = "${var.singlenode_vm_os_user}"
