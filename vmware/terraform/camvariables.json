@@ -1,5 +1,37 @@
 {
+  "input_datatypes": [
+    {
+      "name": "bastionhost",
+      "label": "Bastion Data"
+    }
+  ],    
+  "output_datatypes": [
+    {
+      "name": "com.ibm.cloud.cloudconnections.ICP",
+      "dataobject": {
+        "name": "${template_input_params.icp_cluster_name}",
+        "attributes": [
+          {
+            "name": "username",
+            "value": "${template_input_params.icp_admin_user}"
+          },
+          {
+            "name": "password",
+            "value": "${template_input_params.icp_admin_password}"
+          },
+          {
+            "name": "ICP_server",
+            "value": "${template_output_params.ibm_cloud_private_master_ip}"
+          }
+        ]
+      }
+    }
+  ],  
   "input_groups": [
+    {
+      "name": "bastion",
+      "label": "Bastion host variables"
+    },      
     {
       "name": "cloud",
       "label": "Cloud Input Variables"
@@ -31,6 +63,72 @@
 		"label": "Outputs"
 	}],
   "template_input_params": [
+    {
+      "name": "bastion_host",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion host for ssh proxy",
+      "default": "${bastionhost.bastion_host}",
+      "label": "Bastion host",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_port",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion port for ssh proxy",
+      "default": "${bastionhost.bastion_port}",
+      "label": "Bastion port",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_user",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion user for ssh proxy",
+      "default": "${bastionhost.bastion_user}",
+      "label": "Bastion user",
+      "secured": false,
+      "required": false
+    },
+    {
+      "name": "bastion_private_key",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion private key for ssh proxy",
+      "default": "${bastionhost.bastion_private_key}",
+      "label": "Bastion private key",
+      "secured": true,
+      "required": false
+    },  
+    {
+      "name": "bastion_password",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion user password for ssh proxy",
+      "default": "${bastionhost.bastion_password}",
+      "label": "Bastion user password",
+      "secured": true,
+      "required": false
+    },
+    {
+      "name": "bastion_host_key",
+      "type": "string",
+      "group_name": "bastion",
+      "hidden": true,
+      "description": "Bastion host public key for ssh proxy",
+      "default": "${bastionhost.bastion_host_key}",
+      "label": "Bastion host key",
+      "secured": false,
+      "required": false
+    },        
     {
       "name": "download_user",
       "description": "Username to access a secure repository location",
@@ -455,8 +553,20 @@
   ],
   "template_output_params": [
     {
-      "name": "ibm_cloud_private_admin_url",
+      "name": "ibm_cloud_private_master_ip",
       "type": "string",
+      "description": "IBM Cloud Private Cluster Master Node IP.",
+      "hidden": false,
+      "label": "Master IP",
+      "group_name": "content_template_output",
+      "secured": false,
+      "system": false,
+      "required": true,
+      "immutable": false
+    },
+    {
+      "name": "ibm_cloud_private_admin_url",
+      "type": "url",
       "description": "IBM Cloud Private Cluster URL.",
       "hidden": false,
       "label": "IBM Cloud Private Cluster URL",

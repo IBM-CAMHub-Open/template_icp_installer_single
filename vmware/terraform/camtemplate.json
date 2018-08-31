@@ -23,7 +23,7 @@
       }
     },
     "metadata": {
-      "displayName": "Single Node Deployment of IBM Cloud Private Single ",
+      "displayName": "Single Node Deployment of IBM Cloud Private",
       "providerDisplayName": "VMware vSphere",
       "longDescription": "This template will deploy a single Node instance of IBM Cloud Private",
       "bullets": [{

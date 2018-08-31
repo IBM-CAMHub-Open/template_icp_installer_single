@@ -36,7 +36,8 @@ resource "null_resource" "create-temp-random-dir" {
 }
 
 module "deployVM_singlenode" {
-  source = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//vmware_provision"
+  source = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//vmware_provision"
+
 
   #######
   vsphere_datacenter    = "${var.vsphere_datacenter}"
@@ -74,20 +75,38 @@ module "deployVM_singlenode" {
   vm_dns_suffixes            = "${var.vm_dns_suffixes}"
   random                     = "${random_string.random-dir.result}"
   enable_vm                  = "${var.enable_single_node}"
+  
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"  
 }
 
 module "push_hostfile" {
-  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_hostfile"
+  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//config_hostfile"
+  
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
   vm_os_user           = "${var.singlenode_vm_os_user}"
   vm_ipv4_address_list = "${concat(values(var.singlenode_hostname_ip))}"
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"
+  #######    
   random               = "${random_string.random-dir.result}"
   dependsOn            = "${module.deployVM_singlenode.dependsOn}"
 }
 
 module "icphosts" {
-  source                = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icphosts"
+  source                = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//config_icphosts"
+  
   master_public_ips     = "${join(",", values(var.singlenode_hostname_ip))}"
   proxy_public_ips      = "${join(",", values(var.singlenode_hostname_ip))}"
   management_public_ips = "${join(",", values(var.singlenode_hostname_ip))}"
@@ -99,17 +118,27 @@ module "icphosts" {
 }
 
 module "icp_prereqs" {
-  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1////config_icp_prereqs"
+  source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2////config_icp_prereqs"
+  
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
   vm_os_user           = "${var.singlenode_vm_os_user}"
   vm_ipv4_address_list = "${concat(values(var.singlenode_hostname_ip))}"
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"  
+  #######  
   random               = "${random_string.random-dir.result}"
   dependsOn            = "${module.deployVM_singlenode.dependsOn}"
 }
 
 module "icp_download_load" {
-  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icp_download"
+  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//config_icp_download"
+  
   private_key            = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password         = "${var.singlenode_vm_os_password}"
   vm_os_user             = "${var.singlenode_vm_os_user}"
@@ -120,12 +149,21 @@ module "icp_download_load" {
   download_user          = "${var.download_user}"
   download_user_password = "${var.download_user_password}"
   enable_bluemix_install = "${var.enable_bluemix_install}"
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"  
+  #######    
   random                 = "${random_string.random-dir.result}"
   dependsOn              = "[${module.deployVM_singlenode.dependsOn}, ${module.icp_prereqs.dependsOn}]"
 }
 
 module "icp_config_yaml" {
-  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.1//config_icp_boot_standalone"
+  source                 = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//config_icp_boot_standalone"
+  
   private_key            = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
   vm_os_password         = "${var.singlenode_vm_os_password}"
   vm_os_user             = "${var.singlenode_vm_os_user}"
@@ -140,6 +178,14 @@ module "icp_config_yaml" {
   icp_admin_password     = "${var.icp_admin_password}"
   enable_bluemix_install = "${var.enable_bluemix_install}"
   bluemix_token          = "${var.bluemix_token}"
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"  
+  #######    
   random                 = "${random_string.random-dir.result}"
   dependsOn              = "[${module.icp_download_load.dependsOn}, ${module.icp_prereqs.dependsOn}]"
 }
