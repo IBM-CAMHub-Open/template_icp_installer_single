@@ -135,7 +135,7 @@
       "type": "string",
       "required": false,
       "secured": false,
-      "label": "Repository User Name (Optional)",
+      "label": "Binary Repository User Name (Optional)",
       "hidden": false,
       "immutable": false,
       "group_name": "icpdownload"
@@ -146,7 +146,7 @@
       "type": "password",
       "required": false,
       "secured": true,
-      "label": "Repository User Password (Optional)",
+      "label": "Binary Repository User Password (Optional)",
       "hidden": false,
       "immutable": false,
       "group_name": "icpdownload"
@@ -286,7 +286,20 @@
     {
       "name": "icp_version",
       "description": "IBM Cloud Private Version Number",
-      "default": "2.1.0.3",
+      "options": [{
+          "value": "3.1.0",
+          "label": "3.1.0",
+          "default": "true"
+        },
+        {
+          "value": "2.1.0.3",
+          "label": "2.1.0.3"
+        },
+        {
+          "value": "2.1.0.2",
+          "label": "2.1.0.2"
+        }
+      ],
       "type": "string",
       "required": true,
       "secured": false,
@@ -298,7 +311,7 @@
     {
       "name": "kub_version",
       "description": "IBM Cloud Private Kubernetes Version Number",
-      "default": "1.10.0",
+      "default": "1.11.0",
       "type": "string",
       "required": true,
       "secured": false,
@@ -324,7 +337,7 @@
     {
       "name": "singlenode_memory",
       "description": "Single Node Node Memory Allocation (mb)",
-      "default": "16384",
+      "default": "32768",
       "type": "string",
       "required": true,
       "secured": false,
@@ -336,7 +349,7 @@
     {
       "name": "singlenode_vcpu",
       "description": "Single Node vCPU Allocation",
-      "default": "8",
+      "default": "12",
       "type": "string",
       "required": true,
       "secured": false,
@@ -570,6 +583,7 @@
       "description": "IBM Cloud Private Cluster URL.",
       "hidden": false,
       "label": "IBM Cloud Private Cluster URL",
+      "shortname": "IBM Cloud Private Console",
       "group_name": "content_template_output",
       "secured": false,
       "system": false,

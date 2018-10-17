@@ -78,12 +78,12 @@ variable "icp_binary_url" {
 
 variable "icp_version" {
   type    = "string"
-  default = "2.1.0.3"
+  default = "3.1.0"
 }
 
 variable "kub_version" {
   type    = "string"
-  default = "1.10.0"
+  default = "1.11.0"
 }
 
 variable "download_user" {

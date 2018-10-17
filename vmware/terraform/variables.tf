@@ -5,12 +5,12 @@ variable "singlenode_hostname_ip" {
 
 variable "singlenode_vcpu" {
   type    = "string"
-  default = "8"
+  default = "12"
 }
 
 variable "singlenode_memory" {
   type    = "string"
-  default = "16384"
+  default = "32768"
 }
 
 variable "singlenode_vm_template" {
@@ -122,12 +122,12 @@ variable "icp_binary_url" {
 
 variable "icp_version" {
   type    = "string"
-  default = "2.1.0.3"
+  default = "3.1.0"
 }
 
 variable "kub_version" {
   type    = "string"
-  default = "1.10.0"
+  default = "1.11.0"
 }
 
 variable "download_user" {

@@ -1,6 +1,6 @@
 #
 output "ibm_cloud_private_admin_url" {
-  value = "<a href='https://${element(values(var.singlenode_hostname_ip),0)}:8443' target='_blank'>https://${element(values(var.singlenode_hostname_ip),0)}:8443</a>"
+  value = "https://${element(values(var.singlenode_hostname_ip),0)}:8443"
 }
 
 output "ibm_cloud_private_admin_user" {

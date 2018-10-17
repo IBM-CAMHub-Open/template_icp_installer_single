@@ -21,7 +21,7 @@ The components of a IBM Cloud Private deployment include:
 
 <p align="center">Image 1: IBM Cloud Private Single Node Topology></p>
 
-For more infomation on IBM Cloud Private Nodes, please reference the Knowledge Center: <https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0/getting_started/architecture.html>
+For more infomation on IBM Cloud Private Nodes, please reference the Knowledge Center: <https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.0/getting_started/architecture.html>
 
 ## IBM Cloud Private Versions
 
@@ -29,6 +29,7 @@ For more infomation on IBM Cloud Private Nodes, please reference the Knowledge C
 |------|:-------------:|
 | 2.1.0.2| 2.0|
 | 2.1.0.3| 2.1|
+| 3.1.0  | 2.2|
 
 <https://github.com/IBM-CAMHub-Open/template_icp_installer_single>
 
@@ -43,7 +44,7 @@ This template will setup the following hardware minimum requirements:
 
 | Node Type | CPU Cores | Memory (mb) | Disk 1 | Disk 2 | Number of hosts |
 |------|:-------------:|:----:|:-----:|:-----:|:-----:|
-| Single node | 8 | 16384 | 400 | n/a | 1 |
+| Single node | 12 | 32768 | 400 | n/a | 1 |
 
 ### Supported operating systems and platforms
 
@@ -115,16 +116,16 @@ The following tables list the template variables.
 | icp_binary_url |  IBM Cloud Private Download Location (http/https/ftp/file)| string | |
 | icp_private_ssh_key | IBM Cloud Private - Private SSH Key | string | `` |
 | icp_public_ssh_key | IBM Cloud Private - Public SSH Key | string | `` |
-| icp_version | IBM Cloud Private Version | string | `2.1.0.3` |
-| kub_version | Kubernetes Version| string | `1.10.0` |
+| icp_version | IBM Cloud Private Version | string | `3.1.0` |
+| kub_version | Kubernetes Version| string | `1.11.0` |
 
 ### Single Node Input Settings
 
 | Name | Description | Type | Default |
 |------|-------------|:----:|:-----:|
 | boot_prefix_name | Single  Node Hostname Prefix | string | `ICPSingle` |
-| boot_memory |  Single  Node Memory Allocation (mb) | string | `16382` |
-| boot_vcpu | Single  Node vCPU Allocation | string | `4` |
+| boot_memory |  Single  Node Memory Allocation (mb) | string | `32768` |
+| boot_vcpu | Single  Node vCPU Allocation | string | `12` |
 | boot_vm_disk1_size | Single  Node Disk Size (GB) | string | `400` |
 | boot_vm_ipv4_address | Single  Nodes IP Address | list | `<list>` |
 | boot_vm_ipv4_gateway | Single  Node IP Gateway | string |  |
