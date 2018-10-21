@@ -92,6 +92,11 @@ variable "vm_dns_suffixes" {
   type = "list"
 }
 
+variable "vm_clone_timeout" {
+  description = "The timeout, in minutes, to wait for the virtual machine clone to complete."
+  default = "30"
+}
+
 variable "vsphere_datacenter" {
   type = "string"
 }

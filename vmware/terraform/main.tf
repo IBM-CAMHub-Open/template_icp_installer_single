@@ -72,6 +72,7 @@ module "deployVM_singlenode" {
   vm_disk2_keep_on_remove    = "${var.singlenode_vm_disk2_keep_on_remove}"
   vm_dns_servers             = "${var.vm_dns_servers}"
   vm_dns_suffixes            = "${var.vm_dns_suffixes}"
+  vm_clone_timeout        = "${var.vm_clone_timeout}"
   random                     = "${random_string.random-dir.result}"
   enable_vm                  = "${var.enable_single_node}"
   
