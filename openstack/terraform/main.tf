@@ -157,7 +157,6 @@ module "icp_config_yaml" {
   icp_admin_user         = "${var.icp_admin_user}"
   icp_admin_password     = "${var.icp_admin_password}"
   enable_bluemix_install = "${var.enable_bluemix_install}"
-  enable_glusterFS       = "false"
   bluemix_token          = "${var.bluemix_token}"
   #######
   bastion_host        = "${var.bastion_host}"
