@@ -107,6 +107,11 @@ variable "enable_metering" {
   default = "true"
 }
 
+variable "enable_monitoring" {
+  type    = "string"
+  default = "true"
+}
+
 variable "icp_cluster_name" {
   type = "string"
 }

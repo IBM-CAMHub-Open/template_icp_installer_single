@@ -171,6 +171,7 @@ module "icp_config_yaml" {
   vm_ipv4_address_list   = "${concat(values(var.singlenode_hostname_ip))}"
   enable_kibana          = "${lower(var.enable_kibana)}"
   enable_metering        = "${lower(var.enable_metering)}"
+  enable_monitoring      = "${lower(var.enable_monitoring)}"
   icp_version            = "${var.icp_version}"
   kub_version            = "${var.kub_version}"
   vm_domain              = "${var.vm_domain}"
