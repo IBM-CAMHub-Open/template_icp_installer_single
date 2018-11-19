@@ -85,6 +85,24 @@ module "deployVM_singlenode" {
   bastion_password    = "${var.bastion_password}"  
 }
 
+module "add_ilmt_file" {
+  source               = "git::https://github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//config_add_ilmt_file"
+
+  private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${var.icp_private_ssh_key}"}"
+  vm_os_password       = "${var.singlenode_vm_os_password}"
+  vm_os_user           = "${var.singlenode_vm_os_user}"
+  vm_ipv4_address_list = "${concat(values(var.singlenode_hostname_ip))}"
+  #######
+  bastion_host        = "${var.bastion_host}"
+  bastion_user        = "${var.bastion_user}"
+  bastion_private_key = "${var.bastion_private_key}"
+  bastion_port        = "${var.bastion_port}"
+  bastion_host_key    = "${var.bastion_host_key}"
+  bastion_password    = "${var.bastion_password}"
+  #######    
+  dependsOn            = "${module.deployVM_singlenode.dependsOn}"
+}
+
 module "push_hostfile" {
   source               = "git::https://github.com/IBM-CAMHub-Open/template_icp_modules.git?ref=2.2//config_hostfile"
 
@@ -116,6 +134,7 @@ module "icphosts" {
   enable_vm_va          = "${var.enable_vm_va}"
   enable_glusterFS      = "false"
   random                = "${random_string.random-dir.result}"
+  icp_version           = "${var.icp_version}"
 }
 
 module "icp_prereqs" {
