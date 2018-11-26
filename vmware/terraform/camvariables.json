@@ -265,9 +265,9 @@
       "default": "",
       "type": "string",
       "required": false,
-      "secured": false,
+      "secured": true,
       "label": "IBM Cloud Private - Private SSH Key",
-      "hidden": true,
+      "hidden": false,
       "immutable": false,
       "group_name": "icpsshkey"
     },
@@ -279,7 +279,7 @@
       "required": false,
       "secured": false,
       "label": "IBM Cloud Private - Public SSH Key",
-      "hidden": true,
+      "hidden": false,
       "immutable": false,
       "group_name": "icpsshkey"
     },
