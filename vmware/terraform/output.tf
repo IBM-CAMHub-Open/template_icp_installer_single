@@ -14,3 +14,7 @@ output "ibm_cloud_private_admin_password" {
 output "ibm_cloud_private_master_ip" {
   value = "${element(values(var.singlenode_hostname_ip),0)}"
 }
+
+output "ibm_cloud_private_proxy_hostname" {
+  value = "${element(keys(var.singlenode_hostname_ip),0)}.${var.vm_domain}"
+}
