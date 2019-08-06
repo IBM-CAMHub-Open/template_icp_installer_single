@@ -127,7 +127,7 @@ variable "icp_binary_url" {
 
 variable "icp_version" {
   type    = "string"
-  default = "3.1.1"
+  default = "3.2.0"
 }
 
 variable "kub_version" {
