@@ -1,0 +1,272 @@
+{
+	"name": "vsphere_icp_node_size",
+	"label": "ICP Node Size for vSphere",
+	"description": "Defines the compute, memory, and storage capacity of ICP nodes on vSphere.",
+	"attributes": [
+		{
+			"name": "single_memory",
+			"label": "All-in-One node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "All-in-One node memory in MB. Use this value when you have single node ICP.",
+			"default": "32768"
+		}, {
+			"name": "single_vcpu",
+			"label": "All-in-One node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "All-in-One node VCPU. Use this value when you have single node ICP.",
+			"default": "12"
+		}, {
+			"name": "single_disk_size",
+			"label": "All-in-One node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for All-in-One node in GB. Use this value when you have single node ICP.",
+			"default": "400"
+		}, {
+			"name": "boot_memory",
+			"label": "Boot node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Boot node memory in MB.",
+			"default": "8192"
+		}, {
+			"name": "boot_vcpu",
+			"label": "Boot node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Boot node VCPU",
+			"default": "4"
+		}, {
+			"name": "boot_disk_size",
+			"label": "Boot node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for boot node in GB",
+			"default": "150"
+		}, {
+			"name": "master_memory",
+			"label": "Master node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Master node memory in MB.",
+			"default": "32768"
+		}, {
+			"name": "master_vcpu",
+			"label": "Master node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Master node VCPU",
+			"default": "12"
+		}, {
+			"name": "master_disk_size",
+			"label": "Master node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for Master node in GB",
+			"default": "300"
+		}, {
+			"name": "worker_memory",
+			"label": "Worker node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Worker node memory in MB.",
+			"default": "8192"
+		}, {
+			"name": "worker_vcpu",
+			"label": "Worker node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Worker node VCPU",
+			"default": "4"
+		}, {
+			"name": "worker_disk_size",
+			"label": "Worker node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for Worker node in GB",
+			"default": "200"
+		}, {
+			"name": "proxy_memory",
+			"label": "Proxy node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Proxy node memory in MB.",
+			"default": "8192"
+		}, {
+			"name": "proxy_vcpu",
+			"label": "Proxy node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Proxy node VCPU",
+			"default": "2"
+		}, {
+			"name": "proxy_disk_size",
+			"label": "Proxy node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for proxy node in GB",
+			"default": "200"
+		}, {
+			"name": "manage_memory",
+			"label": "Manage node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Manage node memory in MB.",
+			"default": "16384"
+		}, {
+			"name": "manage_vcpu",
+			"label": "Manage node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Manage node VCPU",
+			"default": "8"
+		}, {
+			"name": "manage_disk_size",
+			"label": "Manage node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for manage node in GB",
+			"default": "200"
+		}, {
+			"name": "va_memory",
+			"label": "VA node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Vulnerability Advisor node memory in MB.",
+			"default": "8192"
+		}, {
+			"name": "va_vcpu",
+			"label": "VA node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Vulnerability Advisor node VCPU",
+			"default": "8"
+		}, {
+			"name": "va_disk_size",
+			"label": "VA node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for vulnerability Advisor node in GB",
+			"default": "150"
+		}, {
+			"name": "nfs_memory",
+			"label": "NFS node memory (RAM in MB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "NFS node memory in MB.",
+			"default": "8192"
+		}, {
+			"name": "nfs_vcpu",
+			"label": "NFS node VCPU",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "NFS node VCPU",
+			"default": "4"
+		}, {
+			"name": "nfs_disk_size",
+			"label": "NFS node disk (GB)",
+			"customtype": "string",
+			"type": "string",
+			"immutable": false,
+			"hidden": false,
+			"required": true,
+			"secured": false,
+			"description": "Disk size for vulnerability NFS node in GB",
+			"default": "150"
+		}
+	]
+}
