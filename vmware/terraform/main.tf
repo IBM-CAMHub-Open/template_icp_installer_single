@@ -86,7 +86,7 @@ module "deployVM_singlenode" {
 }
 
 module "add_ilmt_file" {
-  source               = "git::https://github.com/IBM-CAMHub-Open/terraform_module_ilmt.git?ref=3.2.0"
+  source               = "git::https://github.com/IBM-CAMHub-Open/terraform_module_ilmt.git?ref=3.2.1"
 
   private_key          = "${length(var.icp_private_ssh_key) == 0 ? "${tls_private_key.generate.private_key_pem}" : "${base64decode(var.icp_private_ssh_key)}"}"
   vm_os_password       = "${var.singlenode_vm_os_password}"
