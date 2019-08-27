@@ -1,633 +1,630 @@
 {
-  "input_datatypes": [
-    {
-      "name": "bastionhost",
-      "label": "Bastion Data"
-    }
-  ],    
-  "output_datatypes": [
-    {
-      "name": "com.ibm.cloud.cloudconnections.ICP",
-      "dataobject": {
-        "name": "${template_input_params.icp_cluster_name}",
-        "attributes": [
-          {
-            "name": "username",
-            "value": "${template_input_params.icp_admin_user}"
-          },
-          {
-            "name": "password",
-            "value": "${template_input_params.icp_admin_password}"
-          },
-          {
-            "name": "ICP_server",
-            "value": "${template_output_params.ibm_cloud_private_master_ip}"
-          }
-        ]
-      }
-    }
-  ],  
-  "input_groups": [
-    {
-      "name": "bastion",
-      "label": "Bastion host variables"
-    },      
-    {
-      "name": "cloud",
-      "label": "Cloud Input Variables"
-    },
-    {
-      "name": "generalvmtemplate",
-      "label": "IBM Cloud Private Template Settings"
-    },
-    {
-      "name": "icpsingle",
-      "label": "IBM Cloud Private Single-Node Settings"
-    },
-    {
-      "name": "icpdownload",
-      "label": "IBM Cloud Private Download Settings"
-    },
-    {
-      "name": "icpsshkey",
-      "label": "IBM Cloud Private SSH Keys Settings"
-    },
-    {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Settings"
-    }
-
+	"input_datatypes": [
+		{
+			"name": "bastionhost",
+			"label": "Bastion Data"
+		}				
 	],
-	"output_groups": [{
-		"name": "content_template_output",
-		"label": "Outputs"
-	}],
-  "template_input_params": [
-    {
-      "name": "bastion_host",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion host for ssh proxy",
-      "default": "${bastionhost.bastion_host}",
-      "label": "Bastion host",
-      "secured": false,
-      "required": false
-    },
-    {
-      "name": "bastion_port",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion port for ssh proxy",
-      "default": "${bastionhost.bastion_port}",
-      "label": "Bastion port",
-      "secured": false,
-      "required": false
-    },
-    {
-      "name": "bastion_user",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion user for ssh proxy",
-      "default": "${bastionhost.bastion_user}",
-      "label": "Bastion user",
-      "secured": false,
-      "required": false
-    },
-    {
-      "name": "bastion_private_key",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion private key for ssh proxy",
-      "default": "${bastionhost.bastion_private_key}",
-      "label": "Bastion private key",
-      "secured": true,
-      "required": false
-    },  
-    {
-      "name": "bastion_password",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion user password for ssh proxy",
-      "default": "${bastionhost.bastion_password}",
-      "label": "Bastion user password",
-      "secured": true,
-      "required": false
-    },
-    {
-      "name": "bastion_host_key",
-      "type": "string",
-      "group_name": "bastion",
-      "hidden": true,
-      "description": "Bastion host public key for ssh proxy",
-      "default": "${bastionhost.bastion_host_key}",
-      "label": "Bastion host key",
-      "secured": false,
-      "required": false
-    },        
-    {
-      "name": "download_user",
-      "description": "Username to access a secure repository location",
-      "type": "string",
-      "required": false,
-      "secured": false,
-      "label": "Binary Repository User Name (Optional)",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpdownload"
-    },
-    {
-      "name": "download_user_password",
-      "description": "Password for the Username to access a secure repository location",
-      "type": "password",
-      "required": false,
-      "secured": true,
-      "label": "Binary Repository User Password (Optional)",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpdownload"
-    },
-    {
-      "name": "docker_binary_url",
-      "description": "Location of the Docker Binaries used by IBM Cloud Private",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Docker Download Location (http|https|ftp|file)",
+	"output_datatypes": [
+		{
+			"name": "com.ibm.cloud.cloudconnections.ICP",
+			"dataobject": {
+				"name": "${template_output_params.cloud_connection_name}",
+				"attributes": [
+					{
+						"name": "username",
+						"value": "${template_input_params.icp_admin_user}"
+					}, {
+						"name": "password",
+						"value": "${template_input_params.icp_admin_password}"
+					}, {
+						"name": "ICP_server",
+						"value": "${template_output_params.ibm_cloud_private_master_ip}"
+					}
+				]
+			}
+		},
+		{
+			"name": "private_docker_registry",
+			"dataobject": {
+				"name": "${template_output_params.registry_config_do_name}",
+				"attributes": [
+					{
+						"name": "server_name",
+						"value": "${template_output_params.ibm_cloud_private_custer_ca_domain}"
+					}, {
+						"name": "server_ip",
+						"value": "${template_output_params.ibm_cloud_private_master_ip}"
+					}, {
+						"name": "server_port",
+						"value": "8500"
+					}, {
+						"name": "CA_certificate",
+						"value": "${template_output_params.registry_ca_cert}"
+					}
+				]
+			}
+		}		
+	],
+	"input_groups": [
+		{
+			"name": "bastion",
+			"label": "Bastion host variables"
+		}, {
+			"name": "cloud",
+			"label": "Cloud Input Variables"
+		}, {
+			"name": "generalvmtemplate",
+			"label": "IBM Cloud Private Template Settings"
+		}, {
+			"name": "icpsingle",
+			"label": "IBM Cloud Private Single-Node Settings"
+		}, {
+			"name": "icpdownload",
+			"label": "IBM Cloud Private Download Settings"
+		}, {
+			"name": "icpsshkey",
+			"label": "IBM Cloud Private SSH Keys Settings"
+		}, {
+			"name": "virtualmachine",
+			"label": "Virtual Machine Input Settings"
+		}
+	],
+	"output_groups": [
+		{
+			"name": "content_template_output",
+			"label": "Outputs"
+		}
+	],
+	"template_input_params": [
+		{
+			"name": "bastion_host",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion host for ssh proxy",
+			"default": "${bastionhost.bastion_host}",
+			"label": "Bastion host",
+			"secured": false,
+			"required": false
+		}, {
+			"name": "bastion_port",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion port for ssh proxy",
+			"default": "${bastionhost.bastion_port}",
+			"label": "Bastion port",
+			"secured": false,
+			"required": false
+		}, {
+			"name": "bastion_user",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion user for ssh proxy",
+			"default": "${bastionhost.bastion_user}",
+			"label": "Bastion user",
+			"secured": false,
+			"required": false
+		}, {
+			"name": "bastion_private_key",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion private key for ssh proxy",
+			"default": "${bastionhost.bastion_private_key}",
+			"label": "Bastion private key",
+			"secured": true,
+			"required": false
+		}, {
+			"name": "bastion_password",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion user password for ssh proxy",
+			"default": "${bastionhost.bastion_password}",
+			"label": "Bastion user password",
+			"secured": true,
+			"required": false
+		}, {
+			"name": "bastion_host_key",
+			"type": "string",
+			"group_name": "bastion",
+			"hidden": true,
+			"description": "Bastion host public key for ssh proxy",
+			"default": "${bastionhost.bastion_host_key}",
+			"label": "Bastion host key",
+			"secured": false,
+			"required": false
+		}, {
+			"name": "download_user",
+			"description": "Username to access a secure repository location",
+			"type": "string",
+			"required": false,
+			"secured": false,
+			"label": "Binary Repository User Name (Optional)",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpdownload"
+		}, {
+			"name": "download_user_password",
+			"description": "Password for the Username to access a secure repository location",
+			"type": "password",
+			"required": false,
+			"secured": true,
+			"label": "Binary Repository User Password (Optional)",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpdownload"
+		}, {
+			"name": "docker_binary_url",
+			"description": "Location of the Docker Binaries used by IBM Cloud Private",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Docker Download Location (http|https|ftp|file)",
 			"hidden": false,
 			"immutable": false,
 			"group_name": "icpdownload",
 			"regex": "(https?|ftp|file)://[-A-Za-z0-9\\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\\+&@#/%=~_|]",
 			"regexdesc": "http|https|ftp|file Location to download the IBM Cloud Private Docker Binaries"
-    },
-    {
-      "name": "enable_kibana",
-      "description": "Enable / Disable the installation of Kibana Service in IBM Cloud Private Installation",
-      "default": "false",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Enable IBM Cloud Private Kibana",
+		}, {
+			"name": "enable_kibana",
+			"description": "Enable / Disable the installation of Kibana Service in IBM Cloud Private Installation",
+			"default": "false",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Enable IBM Cloud Private Kibana",
 			"hidden": false,
 			"immutable": false,
-			"options": [{
+			"options": [
+				{
 					"value": "true",
 					"label": "true"
-				},
-				{
+				}, {
 					"value": "false",
 					"label": "false",
 					"default": true
-
 				}
 			],
 			"group_name": "icpsingle"
-    },
-    {
-      "name": "enable_monitoring",
-      "description": "Enable / Disable the installation of Monitoring Service in IBM Cloud Private Installation",
-      "default": "true",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Enable IBM Cloud Private Monitoring",
+		}, {
+			"name": "enable_monitoring",
+			"description": "Enable / Disable the installation of Monitoring Service in IBM Cloud Private Installation",
+			"default": "true",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Enable IBM Cloud Private Monitoring",
 			"hidden": false,
 			"immutable": false,
-			"options": [{
+			"options": [
+				{
 					"value": "true",
 					"label": "true",
 					"default": true
-				},
-				{
+				}, {
 					"value": "false",
 					"label": "false"
-
 				}
 			],
 			"group_name": "icpsingle"
-    },  
-    {
-      "name": "icp_binary_url",
-      "description": "Location of the IBM Cloud Private Binaries used by IBM Cloud Private",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Download Location (http|https|ftp|file)",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpdownload",
-      "regex": "(https?|ftp|file)://[-A-Za-z0-9\\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\\+&@#/%=~_|]",
-      "regexdesc": "http|https|ftp|file Location to download the IBM Cloud Private Binaries"
-    },
-    {
-      "name": "icp_cluster_name",
-      "description": "IBM Cloud Private Cluster Name",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Cluster Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpsingle",
-      "regex": "^[a-z0-9.-]{1,80}$"
-    },
-    {
-      "name": "icp_admin_user",
-      "description": "IBM Cloud Private Admin User Name",
-      "default": "admin",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Admin Username",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpsingle"
-    },
-    {
-      "name": "icp_admin_password",
-      "description": "IBM Cloud Private Admin User Password",
-      "default": "admin",
-      "type": "password",
-      "required": true,
-      "secured": true,
-      "label": "IBM Cloud Private Admin Password",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpsingle"
-    },
-    {
-      "name": "icp_private_ssh_key",
-      "description": "IBM Cloud Private - Private SSH key for access between boxes (base64 encoded)",
-      "default": "",
-      "type": "string",
-      "required": false,
-      "secured": true,
-      "label": "IBM Cloud Private - Private SSH Key",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpsshkey"
-    },
-    {
-      "name": "icp_public_ssh_key",
-      "description": "IBM Cloud Private - Public SSH key for access between boxes",
-      "default": "",
-      "type": "string",
-      "required": false,
-      "secured": false,
-      "label": "IBM Cloud Private - Public SSH Key",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpsshkey"
-    },
-    {
-      "name": "icp_version",
-      "description": "IBM Cloud Private Version Number",
-      "options": [{
-        "value": "3.1.1",
-        "label": "3.1.1",
-        "default": "true"
-        },
-        {
-          "value": "3.1.0",
-          "label": "3.1.0"
-        },
-        {
-          "value": "2.1.0.3",
-          "label": "2.1.0.3"
-        },
-        {
-          "value": "2.1.0.2",
-          "label": "2.1.0.2"
-        }
-      ],
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Version",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpdownload"
-    },
-    {
-      "name": "kub_version",
-      "description": "IBM Cloud Private Kubernetes Version Number",
-      "default": "1.11.0",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Kubernetes Version",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "icpdownload"
-    },
-    {
-      "name": "singlenode_hostname_ip",
-      "default": {
-        "Enter Hostname": "0.0.0.0"
-      },
-      "description": "Single Node Hostname Prefix and IP Address",
-      "type": "map",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Hostname - IP",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "singlenode_memory",
-      "description": "Single Node Node Memory Allocation (mb)",
-      "default": "32768",
-      "type": "string",
-      "required": true,
-      "secured": false,
+		}, {
+			"name": "icp_binary_url",
+			"description": "Location of the IBM Cloud Private Binaries used by IBM Cloud Private",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Download Location (http|https|ftp|file)",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpdownload",
+			"regex": "(https?|ftp|file)://[-A-Za-z0-9\\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\\+&@#/%=~_|]",
+			"regexdesc": "http|https|ftp|file Location to download the IBM Cloud Private Binaries"
+		}, {
+			"name": "icp_cluster_name",
+			"description": "IBM Cloud Private Cluster Name",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Cluster Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpsingle",
+			"regex": "^[a-z0-9.-]{1,80}$"
+		}, {
+			"name": "icp_admin_user",
+			"description": "IBM Cloud Private Admin User Name",
+			"default": "admin",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Admin Username",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpsingle"
+		}, {
+			"name": "icp_admin_password",
+			"description": "IBM Cloud Private Admin User Password",
+			"type": "password",
+			"required": true,
+			"secured": true,
+			"label": "IBM Cloud Private Admin Password",
+			"hidden": false,
+			"immutable": false,
+			"regex": "^([a-zA-Z0-9\\-]{32,})$",
+			"regexdesc": "Allow alphanumeric characters or - symbol. Must have at least 32 characters",
+			"group_name": "icpsingle"
+		}, {
+			"name": "icp_private_ssh_key",
+			"description": "IBM Cloud Private - Private SSH key for access between boxes (base64 encoded)",
+			"type": "string",
+			"required": false,
+			"secured": true,
+			"label": "IBM Cloud Private - Private SSH Key",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpsshkey"
+		}, {
+			"name": "icp_public_ssh_key",
+			"description": "IBM Cloud Private - Public SSH key for access between boxes",
+			"type": "string",
+			"required": false,
+			"secured": false,
+			"label": "IBM Cloud Private - Public SSH Key",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpsshkey"
+		}, {
+			"name": "icp_version",
+			"description": "IBM Cloud Private Version Number",
+			"default": "3.2.1",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Version",
+			"hidden": true,
+			"immutable": false,
+			"group_name": "icpdownload"
+		}, {
+			"name": "kub_version",
+			"description": "IBM Cloud Private Kubernetes Version Number",
+			"default": "1.11.0",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Kubernetes Version",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "icpdownload"
+		}, {
+			"name": "singlenode_hostname_ip",
+			"default": {
+				"Enter Hostname": "0.0.0.0"
+			},
+			"description": "Single Node Hostname Prefix and IP Address",
+			"type": "map",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Hostname - IP",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "virtualmachine"
+		}, {
+			"name": "singlenode_memory",
+			"description": "Single Node Node Memory Allocation (mb)",
+			"default": "32768",
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "Single Node Memory Allocation (mb)",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "singlenode_vcpu",
-      "description": "Single Node vCPU Allocation",
-      "default": "12",
-      "type": "string",
-      "required": true,
-      "secured": false,
+			"hidden": false,
+			"immutable": false,
+			"group_name": "virtualmachine"
+		}, {
+			"name": "singlenode_vcpu",
+			"description": "Single Node vCPU Allocation",
+			"default": "12",
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "Single Node vCPU Allocation",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "singlenode_vm_ipv4_gateway",
-      "description": "Single Node IP Gateway Address",
-      "type": "string",
-      "required": true,
-      "secured": false,
+			"hidden": false,
+			"immutable": false,
+			"group_name": "virtualmachine"
+		}, {
+			"name": "singlenode_vm_ipv4_gateway",
+			"description": "Single Node IP Gateway Address",
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "Single Node IP Gateway",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "virtualmachine",
 			"regex": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]).){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
 			"regexdesc": "Provide a Valid IP address for the Virtual Machine Gateway"
-    },
-    {
-      "name": "singlenode_vm_ipv4_prefix_length",
+		}, {
+			"name": "singlenode_vm_ipv4_prefix_length",
 			"description": "Integer value between 1 and 32 for the prefix length, CIDR, to use when statically assigning an IPv4 address",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node IP Netmask (CIDR)",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node IP Netmask (CIDR)",
 			"hidden": false,
 			"immutable": false,
 			"group_name": "virtualmachine",
 			"regex": "^([8-9]|[1-2][0-9]|3[0-2])$"
-    },
-    {
-      "name": "singlenode_vm_disk1_datastore",
-      "description": "Virtual Machine Datastore Name - Disk 1",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Datastore Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "singlenode_vm_template",
-      "description": "Virtual Machine Template Name",
-      "type": "string",
-      "required": true,
-      "secured": false,
+		}, {
+			"name": "singlenode_vm_disk1_datastore",
+			"description": "Virtual Machine Datastore Name - Disk 1",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Datastore Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "singlenode_vm_template",
+			"description": "Virtual Machine Template Name",
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "Single Node Template Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "singlenode_vm_os_user",
-      "description": "The user name to use while configuring the IBM Cloud Private Single Node.",
-      "default": "root",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Template User Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "singlenode_vm_os_password",
-      "description": "The user password to use while configuring the IBM Cloud Private Single Node.",
-      "type": "password",
-      "required": true,
-      "secured": true,
-      "label": "Single Node Template User Password",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "vm_clone_timeout",
-      "description": "The timeout, in minutes, to wait for the virtual machine clone to complete.",
-      "default": "30",
-      "type": "string",
-      "required": false,
-      "secured": false,
-      "label": "Virtual Machine Clone Timeout",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "singlenode_vm_disk1_keep_on_remove",
-      "default": "false",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Keep Disk on Remove",
-      "hidden": true,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "singlenode_vm_disk1_size",
-      "description": "Single Node Disk Size (GB)",
-      "default": "400",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Disk Size (GB)",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-    "name": "singlenode_vm_disk2_enable",
-    "default": "false",
-    "type": "string",
-    "required": true,
-    "secured": false,
-    "label": "singlenode_vm_disk2_enable",
-    "hidden": true,
-    "immutable": false,
-    "group_name": "virtualmachine",
-    "options": [{
-        "value": "false",
-        "label": "False",
-        "default": "true"
-      },
-      {
-        "value": "true",
-        "label": "True"
-      }
-    ]
-    },
-    {
-      "name": "vm_adapter_type",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "singlenode_vm_os_user",
+			"description": "The user name to use while configuring the IBM Cloud Private Single Node.",
+			"default": "root",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Template User Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "singlenode_vm_os_password",
+			"description": "The user password to use while configuring the IBM Cloud Private Single Node.",
+			"type": "password",
+			"required": true,
+			"secured": true,
+			"label": "Single Node Template User Password",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "vm_clone_timeout",
+			"description": "The timeout, in minutes, to wait for the virtual machine clone to complete.",
+			"default": "30",
+			"type": "string",
+			"required": false,
+			"secured": false,
+			"label": "Virtual Machine Clone Timeout",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "singlenode_vm_disk1_keep_on_remove",
+			"default": "false",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Keep Disk on Remove",
+			"hidden": true,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "singlenode_vm_disk1_size",
+			"description": "Single Node Disk Size (GB)",
+			"default": "400",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Disk Size (GB)",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "virtualmachine"
+		}, {
+			"name": "singlenode_vm_disk2_enable",
+			"default": "false",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "singlenode_vm_disk2_enable",
+			"hidden": true,
+			"immutable": false,
+			"group_name": "virtualmachine",
+			"options": [
+				{
+					"value": "false",
+					"label": "False",
+					"default": "true"
+				}, {
+					"value": "true",
+					"label": "True"
+				}
+			]
+		}, {
+			"name": "vm_adapter_type",
 			"description": "Network adapter type for vNIC Configuration",
-      "default": "vmxnet3",
-      "type": "string",
-      "required": true,
-      "secured": false,
+			"default": "vmxnet3",
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "vSphere Network Adapter Type",
 			"hidden": true,
 			"immutable": false,
 			"group_name": "virtualmachine"
-    },
-    {
-      "name": "vm_domain",
-      "description": "IBM Cloud Private Single Node Virtual Machine's domain name",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "Single Node Domain Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "generalvmtemplate"
-    },
-    {
-      "name": "vm_dns_servers",
+		}, {
+			"name": "vm_domain",
+			"description": "IBM Cloud Private Single Node Virtual Machine's domain name",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "Single Node Domain Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "generalvmtemplate"
+		}, {
+			"name": "vm_dns_servers",
 			"description": "List of DNS servers for the virtual network adapter. For more than one DNS, the values can be entered by adding more fields.",
-      "type": "list",
-      "required": true,
-      "secured": false,
+			"type": "list",
+			"required": true,
+			"secured": false,
 			"label": "Single Node DNS Servers",
-      "hidden": false,
+			"hidden": false,
 			"immutable": false,
 			"group_name": "generalvmtemplate"
-    },
-    {
-      "name": "vm_dns_suffixes",
+		}, {
+			"name": "vm_dns_suffixes",
 			"description": "Name resolution suffixes for the virtual network adapter",
-      "type": "list",
-      "required": true,
-      "secured": false,
+			"type": "list",
+			"required": true,
+			"secured": false,
 			"label": "Single Node DNS Suffixes",
-      "hidden": false,
+			"hidden": false,
 			"immutable": false,
 			"group_name": "generalvmtemplate"
-    },
-
-    {
-      "name": "vsphere_datacenter",
+		}, {
+			"name": "vsphere_datacenter",
 			"description": "The name of a Datacenter in which to launch the IBM Cloud Private Single Node.",
-      "type": "string",
-      "required": true,
-      "secured": false,
+			"type": "string",
+			"required": true,
+			"secured": false,
 			"label": "vSphere DataCenter Name",
-      "hidden": false,
-      "immutable": false,
-			"group_name": "cloud"
-    },
-    {
-      "name": "vsphere_resource_pool",
-			"description": "Name of the default resource pool for the cluster. Specified as 'cluster_name/resource_pool'",
-      "type": "string",
-      "required": true,
-      "secured": false,
-			"label": "vSphere Resource Pool",
-      "hidden": false,
-      "immutable": false,
-			"group_name": "cloud"
-    },
-    {
-      "name": "vm_network_interface_label",
-      "description": "vSphere Port Group name to assign to this network interface.",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "vSphere Port Group Name",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "vm_folder",
-      "description": "vSphere Folder name",
-      "type": "string",
-      "required": false,
-      "secured": false,
-			"label": "vSphere Folder Name",
-      "hidden": false,
+			"hidden": false,
 			"immutable": false,
 			"group_name": "cloud"
-    }
-
-  ],
-  "template_output_params": [
-    {
-      "name": "ibm_cloud_private_master_ip",
-      "type": "string",
-      "description": "IBM Cloud Private Cluster Master Node IP.",
-      "hidden": false,
-      "label": "Master IP",
-      "group_name": "content_template_output",
-      "secured": false,
-      "system": false,
-      "required": true,
-      "immutable": false
-    },
-    {
-      "name": "ibm_cloud_private_admin_url",
-      "type": "url",
-      "description": "IBM Cloud Private Cluster URL.",
-      "hidden": false,
-      "label": "IBM Cloud Private Cluster URL",
-      "shortname": "IBM Cloud Private Console",
-      "group_name": "content_template_output",
-      "secured": false,
-      "system": false,
-      "required": true,
-      "immutable": false
-    },
-    {
-      "name": "ibm_cloud_private_admin_user",
-      "description": "IBM Cloud Private Admin Username",
-      "type": "string",
-      "required": true,
-      "secured": false,
-      "label": "IBM Cloud Private Admin Username",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "content_template_output"
-    },
-    {
-      "name": "ibm_cloud_private_admin_password",
-      "description": "IBM Cloud Private Admin Username Password",
-      "type": "string",
-      "required": true,
-      "secured": true,
-      "label": "IBM Cloud Private Admin Password",
-      "hidden": false,
-      "immutable": false,
-      "group_name": "content_template_output"
-    }
-
-  ]
+		}, {
+			"name": "vsphere_resource_pool",
+			"description": "Name of the default resource pool for the cluster. Specified as 'cluster_name/resource_pool'",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "vSphere Resource Pool",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "cloud"
+		}, {
+			"name": "vm_network_interface_label",
+			"description": "vSphere Port Group name to assign to this network interface.",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "vSphere Port Group Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "cloud"
+		}, {
+			"name": "vm_folder",
+			"description": "vSphere Folder name",
+			"type": "string",
+			"required": false,
+			"secured": false,
+			"label": "vSphere Folder Name",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "cloud"
+		}
+	],
+	"template_output_params": [
+		{
+			"name": "ibm_cloud_private_master_ip",
+			"type": "string",
+			"description": "IBM Cloud Private Cluster Master Node IP.",
+			"hidden": false,
+			"label": "Master IP",
+			"group_name": "content_template_output",
+			"secured": false,
+			"system": false,
+			"required": true,
+			"immutable": false
+		}, {
+			"name": "ibm_cloud_private_admin_url",
+			"type": "url",
+			"description": "IBM Cloud Private Cluster URL.",
+			"hidden": false,
+			"label": "IBM Cloud Private Cluster URL",
+			"shortname": "IBM Cloud Private Console",
+			"group_name": "content_template_output",
+			"secured": false,
+			"system": false,
+			"required": true,
+			"immutable": false
+		}, {
+			"name": "ibm_cloud_private_admin_user",
+			"description": "IBM Cloud Private Admin Username",
+			"type": "string",
+			"required": true,
+			"secured": false,
+			"label": "IBM Cloud Private Admin Username",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "content_template_output"
+		}, {
+			"name": "ibm_cloud_private_admin_password",
+			"description": "IBM Cloud Private Admin Username Password",
+			"type": "string",
+			"required": true,
+			"secured": true,
+			"label": "IBM Cloud Private Admin Password",
+			"hidden": false,
+			"immutable": false,
+			"group_name": "content_template_output"
+		}, {
+			"name": "ibm_cloud_private_proxy_hostname",
+			"type": "string",
+			"description": "IBM Cloud Private Cluster Proxy Node Hostname.",
+			"hidden": false,
+			"label": "IBM Cloud Private Proxy Node Hostname",
+			"secured": false,
+			"system": false,
+			"required": true,
+			"immutable": false
+		},{
+	        "name": "ibm_cloud_private_custer_ca_domain",
+	        "type": "string",
+	        "description": "IBM Cloud Private Cluster CA Domain. This value is used as registry server name.",
+	        "hidden": false,
+	        "label": "IBM Cloud Private Cluster CA Domain",
+	        "secured": false,
+	        "system": false,
+	        "required": true,
+	        "immutable": false
+        },{
+	        "name": "registry_ca_cert",
+	        "type": "string",
+	        "description": "Base64 encoded private docker registry CA certificate. If CA certificate is emmpty then this value will be base64 encoded value of string NIL",
+	        "hidden": false,
+	        "label": "Base64 encoded private docker registry CA certificate",
+	        "secured": false
+        },{
+	        "name": "registry_config_do_name",
+	        "type": "string",
+	        "description": "Name of docker private registry data object that contains docker registry details for this deployment.",
+	        "hidden": false,
+	        "label": "Docker Private Registry Data Object Name",
+	        "secured": false
+        },{
+	        "name": "icp_install_dir",
+	        "type": "string",
+	        "description": "ICP Install Directory",
+	        "hidden": false,
+	        "label": "ICP Install Directory",
+	        "secured": false
+        },{
+	        "name": "cloud_connection_name",
+	        "type": "string",
+	        "description": "ICP Cloud Connection Name",
+	        "hidden": false,
+	        "label": "ICP Cloud Connection Name",
+	        "secured": false
+        }
+	]
 }
